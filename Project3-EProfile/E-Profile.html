@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aryan Arnav C — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F4F7F6;
+    /* iOS Concept Glass Specs: Heavy opacity, massive saturation and blur */
+    --glass-surface: rgba(255, 255, 255, 0.45);
+    --glass-card: rgba(255, 255, 255, 0.65);
+    --glass-hover: rgba(255, 255, 255, 0.85);
+    --border-line: #090B10;
+    --border-subtle: rgba(9, 11, 16, 0.08);
+    
+    --text-dark: #090B10;
+    --text-muted: #5C6470;
+    --emerald: #059669;
+    --emerald-alpha: rgba(5, 150, 105, 0.06);
+    
+    --display: 'Clash Display', sans-serif;
+    --sans: 'Plus Jakarta Sans', sans-serif;
+    --mono: 'Space Mono', monospace;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text-dark);
+    font-family: var(--sans);
+    line-height: 1.6;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  /* Structural Graphic Blueprint Grid Backing */
+  body::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: 
+      linear-gradient(rgba(9, 11, 16, 0.015) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(9, 11, 16, 0.015) 1px, transparent 1px);
+    background-size: 50px 50px;
+    z-index: -2;
+    pointer-events: none;
+  }
+
+  /* Liquid Ambient Light Backglows */
+  .blur-ambient {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(120px);
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.5;
+  }
+  .blur-1 { top: -10%; left: 15%; width: 600px; height: 600px; background: radial-gradient(circle, rgba(5, 150, 105, 0.15) 0%, rgba(0,0,0,0) 70%); }
+  .blur-2 { top: 50%; right: -5%; width: 500px; height: 500px; background: radial-gradient(circle, rgba(6, 182, 212, 0.12) 0%, rgba(0,0,0,0) 70%); }
+
+  /* RESPONSIVE PREMIUM GLASS CURSOR */
+  #custom-cursor {
+    width: 8px;
+    height: 8px;
+    background: var(--emerald);
+    border-radius: 50%;
+    position: fixed;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 1000;
+    transition: width 0.2s, height 0.2s, background-color 0.2s;
+  }
+  #custom-cursor-ring {
+    width: 32px;
+    height: 32px;
+    border: 1px solid rgba(5, 150, 105, 0.3);
+    border-radius: 50%;
+    position: fixed;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 999;
+    transition: transform 0.08s ease-out, width 0.2s, height 0.2s, border-color 0.2s;
+  }
+
+  /* Active states when mouse hovers links */
+  body.cursor-hover #custom-cursor { width: 4px; height: 4px; background: var(--text-dark); }
+  body.cursor-hover #custom-cursor-ring { width: 48px; height: 48px; border-color: var(--text-dark); background: rgba(9, 11, 16, 0.03); }
+
+  ::selection {
+    background: var(--text-dark);
+    color: white;
+  }
+
+  .container {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  /* FROSTED GLASS NAVIGATION BAR */
+  nav {
+    background: var(--glass-surface);
+    backdrop-filter: blur(24px) saturate(190%);
+    -webkit-backdrop-filter: blur(24px) saturate(190%);
+    border-bottom: 1px solid var(--border-subtle);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  nav .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+  }
+  .nav-logo {
+    font-family: var(--display);
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+  }
+  .nav-logo span { color: var(--emerald); }
+  
+  /* HIGH-END TECHY TOP LINKS CONTROLS */
+  .nav-links {
+    display: flex;
+    list-style: none;
+    gap: 12px;
+  }
+  .nav-links li a {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--text-muted);
+    padding: 10px 18px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .nav-links li a::before {
+    content: "";
+    width: 4px;
+    height: 4px;
+    background: transparent;
+    border-radius: 50%;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  .nav-links li a:hover {
+    background: rgba(9, 11, 16, 0.04);
+    color: var(--text-dark);
+  }
+  .nav-links li a:hover::before {
+    background: var(--emerald);
+    box-shadow: 0 0 6px var(--emerald);
+  }
+
+  /* HERO GLASS PANEL */
+  .hero-panel {
+    background: var(--glass-card);
+    backdrop-filter: blur(30px) saturate(200%);
+    -webkit-backdrop-filter: blur(30px) saturate(200%);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 32px;
+    margin-top: 60px;
+    margin-bottom: 80px;
+    padding: 80px;
+    box-shadow: 0 30px 70px rgba(9, 11, 16, 0.03), inset 0 1px 0 rgba(255,255,255,0.6);
+  }
+  .status-tag {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--emerald);
+    background: var(--emerald-alpha);
+    border: 1px solid rgba(5, 150, 105, 0.15);
+    padding: 6px 16px;
+    border-radius: 30px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 32px;
+  }
+  .status-tag .dot {
+    width: 6px;
+    height: 6px;
+    background: var(--emerald);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--emerald);
+  }
+  .hero-panel h1 {
+    font-family: var(--display);
+    font-size: 72px;
+    font-weight: 600;
+    line-height: 1.05;
+    letter-spacing: -2px;
+    max-width: 860px;
+    margin-bottom: 32px;
+  }
+  .hero-panel h1 span {
+    color: var(--emerald);
+    font-weight: 700;
+  }
+  .hero-desc {
+    color: var(--text-muted);
+    font-size: 20px;
+    font-weight: 400;
+    max-width: 740px;
+    line-height: 1.7;
+    margin-bottom: 48px;
+  }
+  .hero-btn {
+    font-family: var(--display);
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background: var(--text-dark);
+    color: white;
+    padding: 18px 40px;
+    border-radius: 14px;
+    display: inline-block;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .hero-btn:hover {
+    background: var(--emerald);
+    transform: translateY(-4px);
+    box-shadow: 0 15px 30px rgba(5, 150, 105, 0.25);
+  }
+
+  /* ON-SCROLL REVEAL SCENARIO STYLING */
+  .reveal-section {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal-section.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  section { padding: 80px 0; }
+  .section-label {
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--emerald);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .section-label::after {
+    content: "";
+    flex-grow: 1;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(5, 150, 105, 0.2), transparent);
+  }
+  h2 {
+    font-family: var(--display);
+    font-size: 42px;
+    font-weight: 600;
+    letter-spacing: -1.5px;
+    margin-bottom: 60px;
+  }
+
+  /* PREMIUM REFRACTING PROJECT CARDS */
+  .project-card-glass {
+    background: var(--glass-card);
+    backdrop-filter: blur(20px) saturate(160%);
+    -webkit-backdrop-filter: blur(20px) saturate(160%);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 24px;
+    padding: 48px;
+    margin-bottom: 32px;
+    box-shadow: 0 20px 40px rgba(9, 11, 16, 0.02);
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 60px;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .project-card-glass:hover {
+    background: var(--glass-hover);
+    border-color: rgba(5, 150, 105, 0.3);
+    transform: translateY(-6px) scale(1.005);
+    box-shadow: 0 30px 60px rgba(5, 150, 105, 0.08);
+  }
+  .project-title-side h3 {
+    font-family: var(--display);
+    font-size: 32px;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+    line-height: 1.2;
+    margin-bottom: 16px;
+    transition: transform 0.3s ease;
+  }
+  .project-card-glass:hover h3 {
+    transform: translateX(4px);
+  }
+  .project-link-action {
+    font-family: var(--mono);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+    color: var(--emerald);
+  }
+  .project-info-side p {
+    color: var(--text-muted);
+    font-size: 16px;
+    line-height: 1.7;
+    margin-bottom: 16px;
+  }
+  .tag-group {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 24px;
+  }
+  .tag-pill {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-dark);
+    background: rgba(255, 255, 255, 0.5);
+    border: 1px solid var(--border-subtle);
+    padding: 6px 14px;
+    border-radius: 8px;
+  }
+
+  /* SKILLS & ARCHITECTURE GLASS MATRIX */
+  .matrix-wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 32px;
+  }
+  .matrix-box-glass {
+    background: var(--glass-card);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 24px;
+    padding: 40px;
+    box-shadow: 0 15px 35px rgba(9, 11, 16, 0.01);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .matrix-box-glass:hover {
+    border-color: var(--text-dark);
+    transform: translateY(-4px);
+  }
+  .matrix-box-glass h3 {
+    font-family: var(--display);
+    font-size: 18px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 24px;
+    border-bottom: 1px solid var(--border-subtle);
+    padding-bottom: 12px;
+  }
+  .skills-rows-pack {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .skill-row-pill {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text-muted);
+    background: rgba(255, 255, 255, 0.4);
+    padding: 12px 18px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .matrix-box-glass:hover .skill-row-pill {
+    color: var(--text-dark);
+    background: var(--surface);
+  }
+  .skill-row-pill::after { content: "▪"; color: var(--emerald); }
+
+  /* HISTORICAL GLASS RECORDS */
+  .history-card-row {
+    background: var(--glass-card);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 24px;
+    padding: 36px 44px;
+    margin-bottom: 24px;
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 32px;
+    transition: border-color 0.3s ease;
+  }
+  .history-card-row:hover { border-color: rgba(5, 150, 105, 0.3); }
+  .history-badge {
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 700;
+    background: var(--text-dark);
+    color: white;
+    padding: 8px 20px;
+    border-radius: 8px;
+    width: fit-content;
+    height: fit-content;
+  }
+  .history-card-row:hover .history-badge { background: var(--emerald); }
+  .history-content-text h4 {
+    font-family: var(--display);
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+  }
+  .history-content-text p { color: var(--text-muted); font-size: 15.5px; margin-top: 6px; }
+
+  /* LANG LAYOUTS */
+  .lang-box-flex { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 44px; }
+  .lang-box-item {
+    background: var(--glass-card);
+    border: 1px solid var(--border-subtle);
+    padding: 14px 32px;
+    border-radius: 14px;
+    font-family: var(--mono);
+    font-weight: 700;
+    font-size: 13px;
+  }
+
+  /* HIGH-END INTERACTIVE FOOTER */
+  footer {
+    background: var(--text-dark);
+    color: white;
+    padding: 80px 0;
+    margin-top: 100px;
+  }
+  .footer-flex-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 40px;
+  }
+  .footer-left p { 
+    font-family: var(--mono); 
+    font-size: 13px; 
+    opacity: 0.5;
+  }
+  .footer-left .footer-geo {
+    font-family: var(--display);
+    font-size: 14px;
+    font-weight: 600;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 8px 20px;
+    border-radius: 30px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: inline-block;
+    margin-top: 16px;
+  }
+  .footer-contacts-schematic {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .footer-node {
+    font-family: var(--mono);
+    font-size: 13px;
+    letter-spacing: 1px;
+    color: rgba(255, 255, 255, 0.6);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .footer-node strong {
+    color: var(--emerald);
+  }
+  .footer-node a {
+    color: white;
+  }
+  .footer-node a:hover {
+    color: var(--emerald);
+    text-decoration: underline;
+  }
+
+  /* WEB LAYOUT RESPONSES */
+  @media(max-width: 950px) {
+    .hero-panel { padding: 48px; }
+    .hero-panel h1 { font-size: 48px; }
+    .project-card-glass { grid-template-columns: 1fr; gap: 24px; padding: 36px; }
+    .history-card-row { grid-template-columns: 1fr; gap: 12px; padding: 32px; }
+  }
+  @media(max-width: 600px) {
+    nav .links { display: none; }
+    #custom-cursor, #custom-cursor-ring { display: none; }
+    .hero-panel { padding: 32px 24px; border-radius: 20px; }
+    .project-title-side h3 { font-size: 26px; }
+    .footer-flex-box { flex-direction: column; gap: 32px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Dynamic UI Laser Glass Elements -->
+<div id="custom-cursor"></div>
+<div id="custom-cursor-ring"></div>
+<div class="blur-ambient blur-1"></div>
+<div class="blur-ambient blur-2"></div>
+
+<nav>
+  <div class="container">
+    <div class="nav-logo">aryan<span>.</span></div>
+    <ul class="nav-links">
+      <li><a href="#projects" class="hover-node">Work</a></li>
+      <li><a href="#skills" class="hover-node">Toolkit</a></li>
+      <li><a href="#education" class="hover-node">History</a></li>
+      <li><a href="#contact" class="hover-node">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container">
+  <section class="hero-panel">
+    <div class="status-tag">
+      <div class="dot"></div>
+      CORE_ENGINE // RUNNING
+    </div>
+    <h1>I engineer <span>Software Systems</span>, structural configurations, and scalable assets.</h1>
+    <p class="hero-desc">
+      My name is Aryan Arnav C. I specialize in full-stack architecture, customized execution blocks, algorithmic design, and automated device validation pathways.
+    </p>
+    <div class="hero-actions">
+      <a href="https://github.com" target="_blank" class="hero-btn hover-node">Source Code</a>
+    </div>
+  </section>
+</div>
+
+<section id="projects" class="reveal-section">
+  <div class="container">
+    <div class="section-label">01 // Active Frameworks</div>
+    <h2>Selected Deployments</h2>
+
+    <!-- Project 1: BookLoop -->
+    <div class="project-card-glass">
+      <div class="project-title-side">
+        <h3>BookLoop</h3>
+        <a href="#" target="_blank" class="project-link-action hover-node">Abstract ↗</a>
+      </div>
+      <div class="project-info-side">
+        <p>Architecting a peer-to-peer sharing and bartering platform intended to simplify text resource discovery for student communities.</p>
+        <p>Developed modular internal layout rules and comprehensive user-to-user discovery tracks.</p>
+        <div class="tag-group">
+          <span class="tag-pill">Product Design</span>
+          <span class="tag-pill">Community Software</span>
+          <span class="tag-pill">UI Architecture</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 2: Automatic Fire Extinguisher System -->
+    <div class="project-card-glass">
+      <div class="project-title-side">
+        <h3>Automatic Fire Extinguisher System</h3>
+        <a href="#" target="_blank" class="project-link-action hover-node">Hardware Array ↗</a>
+      </div>
+      <div class="project-info-side">
+        <p>Designed an autonomous safety system integrating real-time micro-sensor data streams to detect critical environmental changes instantly.</p>
+        <p>Programmed reactive actuation logic ensuring accurate, sub-second mechanical intervention triggers during risk validation.</p>
+        <div class="tag-group">
+          <span class="tag-pill">IoT Integration</span>
+          <span class="tag-pill">Embedded Systems</span>
+          <span class="tag-pill">Sensors</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 3: 2D Editor -->
+    <div class="project-card-glass">
+      <div class="project-title-side">
+        <h3>2D Editor</h3>
+        <a href="https://github.com/aryanarnav7060/R25EJ016" target="_blank" class="project-link-action hover-node">Source Core ↗</a>
+      </div>
+      <div class="project-info-side">
+        <p>Built a custom 2D canvas editor directly in C utilizing manual memory buffer configurations and dynamic structures.</p>
+        <p>Optimized structural frame rendering arrays and pointer offsets to handle localized coordinate logic with minimal overhead.</p>
+        <div class="tag-group">
+          <span class="tag-pill">Memory Layouts</span>
+          <span class="tag-pill">Graphics Engines</span>
+          <span class="tag-pill">Data Structures</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 4: Medical Database Management System -->
+    <div class="project-card-glass">
+      <div class="project-title-side">
+        <h3>Medical Database Management System</h3>
+        <a href="#" target="_blank" class="project-link-action hover-node">SQL Layout ↗</a>
+      </div>
+      <div class="project-info-side">
+        <p>Engineered a highly structured relational system designed to track, store, and manage secure medical inventories and records.</p>
+        <p>Implemented strict algorithmic querying, relational keys, and validation safeguards to prevent data intersection bugs.</p>
+        <div class="tag-group">
+          <span class="tag-pill">Database Design</span>
+          <span class="tag-pill">Systems Architecture</span>
+          <span class="tag-pill">Data Integrity</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 5: Laptop Price Predictor -->
+    <div class="project-card-glass">
+      <div class="project-title-side">
+        <h3>Laptop Price Predictor</h3>
+        <a href="#" target="_blank" class="project-link-action hover-node">Model Weights ↗</a>
+      </div>
+      <div class="project-info-side">
+        <p>Constructed an end-to-end regression model parsing hardware specifications (CPU, GPU TGP, SSD capacity) to predict accurate consumer valuations.</p>
+        <p>Handled targeted feature encoding, data scaling, and cleaning routines to optimize validation accuracy metrics.</p>
+        <div class="tag-group">
+          <span class="tag-pill">Machine Learning</span>
+          <span class="tag-pill">Python Pipelines</span>
+          <span class="tag-pill">Data Analysis</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="skills" class="reveal-section">
+  <div class="container">
+    <div class="section-label">02 // Capability Matrix</div>
+    <h2>Technical Proficiencies</h2>
+    <div class="matrix-wrapper">
+      
+      <div class="matrix-box-glass">
+        <h3>Languages</h3>
+        <div class="skills-rows-pack">
+          <div class="skill-row-pill">C Programming</div>
+          <div class="skill-row-pill">Advanced C (ACP)</div>
+          <div class="skill-row-pill">Python</div>
+          <div class="skill-row-pill">HTML5 / CSS3</div>
+        </div>
+      </div>
+
+      <div class="matrix-box-glass">
+        <h3>Environments</h3>
+        <div class="skills-rows-pack">
+          <div class="skill-row-pill">Git & GitHub</div>
+          <div class="skill-row-pill">IoT Microcontrollers</div>
+          <div class="skill-row-pill">SQL Databases</div>
+          <div class="skill-row-pill">Linux Shell</div>
+        </div>
+      </div>
+
+      <div class="matrix-box-glass">
+        <h3>Core Domains</h3>
+        <div class="skills-rows-pack">
+          <div class="skill-row-pill">Data Structures (DSA)</div>
+          <div class="skill-row-pill">Machine Learning</div>
+          <div class="skill-row-pill">Embedded Firmware</div>
+          <div class="skill-row-pill">Systems Design</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="education" class="reveal-section">
+  <div class="container">
+    <div class="section-label">03 // Historical Register</div>
+    <h2>Academic Profile</h2>
+
+    <div class="history-card-row">
+      <div class="history-badge">UNDERGRADUATE</div>
+      <div class="history-content-text">
+        <h4>REVA University, Bengaluru</h4>
+        <p>B.Tech in Computer Science and Information Technology (CSIT)</p>
+      </div>
+    </div>
+
+    <div class="history-card-row">
+      <div class="history-badge">SECONDARY BOARD</div>
+      <div class="history-content-text">
+        <h4>Central Board of Secondary Education (CBSE)</h4>
+        <p>Class 12 Board Certification (Informatics Practices Specialization)</p>
+      </div>
+    </div>
+
+    <div class="lang-box-flex">
+      <div class="lang-box-item">Kannada</div>
+      <div class="lang-box-item">English</div>
+      <div class="lang-box-item">Hindi</div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="container">
+    <div class="footer-flex-box">
+      <div class="footer-left">
+        <p>SYS_PING // ACTIVE_V26 © ARYAN ARNAV C</p>
+        <div class="footer-geo">Bengaluru, IN</div>
+      </div>
+      <div class="footer-contacts-schematic">
+        <div class="footer-node">
+          <span><strong>[COM_PHONE]</strong> <a href="tel:+918660993454" class="hover-node">+91 8660993454</a></span>
+        </div>
+        <div class="footer-node">
+          <span><strong>[COM_EMAIL]</strong> <a href="mailto:aryanarnav5407@gmail.com" class="hover-node">aryanarnav5407@gmail.com</a></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // 1. HARDWARE ACCELERATED ON-SCROLL REVEAL ENGINE
+  const observerOptions = { root: null, threshold: 0.1, rootMargin: "0px" };
+  const revealSections = document.querySelectorAll('.reveal-section');
+  
+  const scrollObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+      }
+    });
+  }, observerOptions);
+
+  revealSections.forEach(section => scrollObserver.observe(section));
+
+  // 2. PREMIUM SPATIAL FLUID MOUSE TRACKING ENGINE
+  const dot = document.getElementById('custom-cursor');
+  const ring = document.getElementById('custom-cursor-ring');
+  let mouseX = 0, mouseY = 0;
+  let ringX = 0, ringY = 0;
+
+  window.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    dot.style.left = mouseX + 'px';
+    dot.style.top = mouseY + 'px';
+  });
+
+  // Smooth lagging interpolation loop for the glass cursor ring
+  function animateRing() {
+    ringX += (mouseX - ringX) * 0.15;
+    ringY += (mouseY - ringY) * 0.15;
+    ring.style.left = ringX + 'px';
+    ring.style.top = ringY + 'px';
+    requestAnimationFrame(animateRing);
+  }
+  requestAnimationFrame(animateRing);
+
+  // Trigger scale changes on link focus elements
+  function refreshHoverNodes() {
+    const interactiveNodes = document.querySelectorAll('.hover-node, nav .nav-links a');
+    interactiveNodes.forEach(node => {
+      node.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+      node.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+    });
+  }
+  refreshHoverNodes();
+</script>
+
+</body>
+</html>
