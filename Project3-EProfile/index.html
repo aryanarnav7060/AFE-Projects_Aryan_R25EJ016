@@ -325,6 +325,30 @@
     height: 1px;
     background: linear-gradient(90deg, rgba(5, 150, 105, 0.2), transparent);
   }
+  .reveal-section.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  section { padding: 80px 0; }
+  .section-label {
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--emerald);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .section-label::after {
+    content: "";
+    flex-grow: 1;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(5, 150, 105, 0.2), transparent);
+  }
   h2 {
     font-family: var(--display);
     font-size: 42px;
@@ -616,11 +640,11 @@
     <div class="section-label">01 // Active Frameworks</div>
     <h2>Selected Deployments</h2>
 
-    <!-- Project 1: Project1-Hello World -->
+    <!-- Project 1: Project1-Hello-World -->
     <div class="project-card-glass">
       <div class="project-title-side">
-        <h3>Project1-Hello World</h3>
-        <a href="https://github.com/aryanarnav7060/AFE-Projects_Aryan_R25EJ016/tree/main/Project1-Hello%20World" target="_blank" class="project-link-action hover-node">Repository Link ↗</a>
+        <h3>Project1-Hello-World</h3>
+        <a href="https://github.com/aryanarnav7060/AFE-Projects_Aryan_R25EJ016/tree/main/Project1-Hello-World" target="_blank" class="project-link-action hover-node">Repository Link ↗</a>
       </div>
       <div class="project-info-side">
         <p>Initial foundational program deployment establishing development environment initialization and micro-interaction diagnostics.</p>
@@ -633,11 +657,11 @@
       </div>
     </div>
 
-    <!-- Project 2: Project2-Hugging Face Model -->
+    <!-- Project 2: Project2-Hugging-Face-Model -->
     <div class="project-card-glass">
       <div class="project-title-side">
-        <h3>Project2-Hugging Face Model</h3>
-        <a href="https://github.com/aryanarnav7060/AFE-Projects_Aryan_R25EJ016/tree/main/Project2-Hugging%20Face%20Model" target="_blank" class="project-link-action hover-node">Repository Link ↗</a>
+        <h3>Project2-Hugging-Face-Model</h3>
+        <a href="https://github.com/aryanarnav7060/AFE-Projects_Aryan_R25EJ016/tree/main/Project2-Hugging-Face-Model" target="_blank" class="project-link-action hover-node">Repository Link ↗</a>
       </div>
       <div class="project-info-side">
         <p>A web layout configuration designed to present artificial intelligence text, classification, or transformation pipelines natively.</p>
