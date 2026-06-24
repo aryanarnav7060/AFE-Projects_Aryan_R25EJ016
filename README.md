@@ -6,7 +6,7 @@
 |--------|--------|--------|
 | Aryan Arnav C | R25EJ016 | CSIT-A |
 | Abhishek Kumar | R25EJ003 | CSIT-A |
-| Ishant Lanjewar | R25EJ044 | CSIT-A |
+| Ishant Lanjewar| R25EJ044 | CSIT-A |
 
 ---
 
@@ -85,14 +85,65 @@ Built a website highlighting AI concepts, applications, and future technologies.
 
 ---
 
+## Project 5 - AI News Agent
+
+### Objective
+Create an automation agent that collects the latest news and sends the top headlines.
+
+### Technologies
+- Python
+- NewsAPI
+- WhatsApp Automation
+
+### Outcome
+Developed an intelligent news agent capable of collecting and processing daily news headlines.
+
+---
+
 ## Repository Structure
 
 ```text
-AFE-Projects_Aryan_R25EJ016
+AFE-Projects_Harshil_R25EJ040
 │
 ├── Project1-HelloWorld
 ├── Project2-HuggingFace
 ├── Project3-EProfile
 ├── Project4-AIWebsite
 └── Project5-NewsAgent
+```
+
+---
+
+## GitHub Repository
+
+https://github.com/aryanarnav7060/AFE-Projects_Aryan_R25EJ016/
+
+---
+
+## Conclusion
+
+This project portfolio demonstrates practical experience in:
+
+- GitHub Version Control
+- Artificial Intelligence
+- Data Science
+- Web Development
+- Automation Agents
+- Project Deployment
+
+These projects collectively showcase foundational engineering and computing skills developed during the AFE course.
+
+
+Link for Overview:
+
+
+
+
+### Live Website
+
+
+
+### Live Website
+
+
 
